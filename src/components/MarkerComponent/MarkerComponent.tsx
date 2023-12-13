@@ -2,7 +2,6 @@ import { Marker, Popup } from 'react-leaflet';
 import { MarkerType } from '../../types/MarkerType';
 import { Icon } from 'leaflet';
 import markerIcon from '../../images/marker.svg';
-
 import './MarkerComponent.css';
 
 type Props = {
@@ -18,8 +17,6 @@ const customIcon = new Icon({
 });
 
 export const MarkerComponent: React.FC<Props> = ({ marker, index, deleteMarker, updateMarker }) => {
-
-
   return (
     <Marker
       position={marker.location}
@@ -28,11 +25,11 @@ export const MarkerComponent: React.FC<Props> = ({ marker, index, deleteMarker, 
       eventHandlers={{
         dragend(e) {
           const locationObj = e.target.getLatLng();
+
           updateMarker({
             ...marker,
             location: [locationObj.lat, locationObj.lng],
           })
-          
         }
       }}
     >

@@ -1,9 +1,9 @@
 import { MarkerType } from "./types/MarkerType";
 
 export const convertLinkedListToArray = (marker: MarkerType | null) => {
-if (!marker) {
-  return [];
-}
+  if (!marker) {
+    return [];
+  }
 
   const array = [];
   let currentMarker: MarkerType | null = marker;
@@ -17,7 +17,6 @@ if (!marker) {
     if (!currentMarker.next) {
       break;
     }
-
     currentMarker = currentMarker.next;
   }
 
@@ -29,15 +28,13 @@ export const addMarkerToTheEnd = (firstMarker: MarkerType | null, marker: Marker
     return marker;
   }
 
-  const firstMarkerCopy = {...firstMarker};
+  const firstMarkerCopy = { ...firstMarker };
   let currentMarker = firstMarkerCopy;
 
   while (currentMarker.next) {
     currentMarker = currentMarker.next;
   }
-
   currentMarker.next = marker;
-  
 
   return firstMarkerCopy;
 }
@@ -51,15 +48,15 @@ export const deleteMarker = (firstMarker: MarkerType | null, marker: Omit<Marker
     return firstMarker.next;
   }
 
-  const firstMarkerCopy: MarkerType = {...firstMarker};
+  const firstMarkerCopy: MarkerType = { ...firstMarker };
   let previousMarker = firstMarkerCopy;
   let currentMarker = firstMarkerCopy.next;
-
 
   while (true) {
     if (!currentMarker) {
       break;
     }
+
     if (currentMarker.timestamp === marker.timestamp) {
       previousMarker.next = currentMarker.next;
       break;
@@ -67,8 +64,6 @@ export const deleteMarker = (firstMarker: MarkerType | null, marker: Omit<Marker
     previousMarker = currentMarker;
     currentMarker = currentMarker.next;
   }
-
-  
 
   return firstMarkerCopy;
 }
@@ -78,7 +73,7 @@ export const updateMarker = (firstMarker: MarkerType | null, marker: Omit<Marker
     return null;
   }
 
-  const firstMarkerCopy: MarkerType = {...firstMarker};
+  const firstMarkerCopy: MarkerType = { ...firstMarker };
   let currentMarker: MarkerType | null = firstMarkerCopy;
 
   while (true) {
@@ -90,10 +85,8 @@ export const updateMarker = (firstMarker: MarkerType | null, marker: Omit<Marker
       currentMarker.location = marker.location;
       break;
     }
-
     currentMarker = currentMarker.next;
   }
-  
 
   return firstMarkerCopy;
 }

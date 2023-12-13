@@ -32,12 +32,14 @@ export const Markers: React.FC<Props> = ({ markers, setMarkers }) => {
 
   const handleDeleteMarker = (marker: Omit<MarkerType, 'next'>) => {
     const updatedMarkers = deleteMarker(markers, marker);
+
     writeToDB(updatedMarkers);
     setMarkers(updatedMarkers);
   }
 
   const handleUpdateMarker = (marker: Omit<MarkerType, 'next'>) => {
     const updatedMarkers = updateMarker(markers, marker);
+
     writeToDB(updatedMarkers);
     setMarkers(updatedMarkers);
   }
