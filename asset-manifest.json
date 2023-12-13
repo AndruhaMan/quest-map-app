@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/quest-map-app/static/css/main.9922fd3f.css",
+    "main.js": "/quest-map-app/static/js/main.347b9ed7.js",
+    "static/media/marker.svg": "/quest-map-app/static/media/marker.0625e2886a55547829aaf9e761fe0b7e.svg",
+    "index.html": "/quest-map-app/index.html",
+    "main.9922fd3f.css.map": "/quest-map-app/static/css/main.9922fd3f.css.map",
+    "main.347b9ed7.js.map": "/quest-map-app/static/js/main.347b9ed7.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.9922fd3f.css",
+    "static/js/main.347b9ed7.js"
+  ]
+}
