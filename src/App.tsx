@@ -1,13 +1,20 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { MarkerType } from './types/MarkerType';
 import { Map } from './components/Map';
 
 import './App.css';
+import { getFromDB, writeToDB } from './firebase';
 
 function App() {
-  const [markers, setMarkers] = useState<MarkerType | null>(null);  
+  const [markers, setMarkers] = useState<MarkerType | null>(null); 
+
+  useEffect(() => {
+    getFromDB()
+      .then(setMarkers);
+  }, []);
 
   const handleDelete = () => {
+    writeToDB(null);
     setMarkers(null);
   }
 

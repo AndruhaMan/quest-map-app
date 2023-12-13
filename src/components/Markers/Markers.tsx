@@ -2,8 +2,9 @@ import MarkerClusterGroup from "react-leaflet-cluster";
 import { MarkerComponent } from "../MarkerComponent";
 import { MarkerType } from "../../types/MarkerType";
 import { useEffect, useState } from "react";
-import { addMarkerToTheEnd, convertLinkedListToArray, deleteMarkerByTimestamp, updateMarkerByTimestamp } from "../../helpers";
+import { addMarkerToTheEnd, convertLinkedListToArray, deleteMarker, updateMarker } from "../../helpers";
 import { useMapEvent } from "react-leaflet";
+import { writeToDB } from "../../firebase";
 
 type Props = {
   markers: MarkerType | null,
@@ -23,16 +24,22 @@ export const Markers: React.FC<Props> = ({ markers, setMarkers }) => {
       timestamp: Date.now(),
       next: null,
     }
+    const updatedMarkers = addMarkerToTheEnd(markers, newMarker);
 
-    setMarkers(addMarkerToTheEnd(markers, newMarker));
+    writeToDB(updatedMarkers);
+    setMarkers(updatedMarkers);
   });
 
   const handleDeleteMarker = (marker: Omit<MarkerType, 'next'>) => {
-    setMarkers(deleteMarkerByTimestamp(markers, marker.timestamp));
+    const updatedMarkers = deleteMarker(markers, marker);
+    writeToDB(updatedMarkers);
+    setMarkers(updatedMarkers);
   }
 
   const handleUpdateMarker = (marker: Omit<MarkerType, 'next'>) => {
-    setMarkers(updateMarkerByTimestamp(markers, marker));
+    const updatedMarkers = updateMarker(markers, marker);
+    writeToDB(updatedMarkers);
+    setMarkers(updatedMarkers);
   }
 
   return (

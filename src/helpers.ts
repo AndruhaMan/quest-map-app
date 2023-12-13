@@ -42,12 +42,12 @@ export const addMarkerToTheEnd = (firstMarker: MarkerType | null, marker: Marker
   return firstMarkerCopy;
 }
 
-export const deleteMarkerByTimestamp = (firstMarker: MarkerType | null, timestamp: number) => {
+export const deleteMarker = (firstMarker: MarkerType | null, marker: Omit<MarkerType, 'next'>) => {
   if (!firstMarker) {
     return null;
   }
 
-  if (firstMarker.timestamp === timestamp) {
+  if (firstMarker.timestamp === marker.timestamp) {
     return firstMarker.next;
   }
 
@@ -60,7 +60,7 @@ export const deleteMarkerByTimestamp = (firstMarker: MarkerType | null, timestam
     if (!currentMarker) {
       break;
     }
-    if (currentMarker.timestamp === timestamp) {
+    if (currentMarker.timestamp === marker.timestamp) {
       previousMarker.next = currentMarker.next;
       break;
     }
@@ -73,7 +73,7 @@ export const deleteMarkerByTimestamp = (firstMarker: MarkerType | null, timestam
   return firstMarkerCopy;
 }
 
-export const updateMarkerByTimestamp = (firstMarker: MarkerType | null, marker: Omit<MarkerType, 'next'>) => {
+export const updateMarker = (firstMarker: MarkerType | null, marker: Omit<MarkerType, 'next'>) => {
   if (!firstMarker) {
     return null;
   }
